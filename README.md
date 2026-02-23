@@ -1,0 +1,1 @@
+# Gdr2333.Plugins.Minesweeper
