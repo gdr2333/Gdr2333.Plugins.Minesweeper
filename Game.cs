@@ -24,24 +24,25 @@ internal class Game : IDisposable
         canvas = new(bitmap);
         canvas.Clear(SKColors.LightGray);
         using var paint = new SKPaint();
-        paint.IsStroke = true;
+        paint.IsStroke = false;
         paint.Color = SKColors.Black;
-        paint.StrokeWidth = 2;
+        paint.StrokeWidth = 1;
         for (int i = 0; i < height; i++)
         {
             var text = i.ToString();
-            canvas.DrawText(text, 50, 60 + i * 20, SKTextAlign.Right, font, paint);
+            canvas.DrawText(text, 48, 65 + i * 20, SKTextAlign.Right, font, paint);
         }
         for (int i = 0; i < width; i++)
         {
             var text = GetColString(i);
-            canvas.DrawText(text, 60 + i * 20, 40, SKTextAlign.Center, font, paint);
+            canvas.DrawText(text, 60 + i * 20, 48, SKTextAlign.Center, font, paint);
         }
         float xStart = 50, xEnd = width * 20 + 50, yStart = 50, yEnd = height * 20 + 50;
         using var bgPaint = new SKPaint();
         bgPaint.IsStroke = false;
         bgPaint.Color = SKColors.Gray;
         canvas.DrawRect(xStart, yStart, width * 20, height * 20, bgPaint);
+        paint.StrokeWidth = 2;
         for (int i = 0; i <= height; i++)
         {
             float yAddr = i * 20 + 50;
@@ -157,7 +158,7 @@ internal class Game : IDisposable
         using var textPaint = new SKPaint();
         textPaint.IsStroke = true;
         textPaint.Color = SKColors.Red;
-        canvas.DrawText("?", x * 20 + 60, y * 20 + 60, SKTextAlign.Center, font, textPaint);
+        canvas.DrawText("?", x * 20 + 60, y * 20 + 65, SKTextAlign.Center, font, textPaint);
         return true;
     }
     public bool Mark(string row, string col)
@@ -170,7 +171,7 @@ internal class Game : IDisposable
         using var textPaint = new SKPaint();
         textPaint.IsStroke = true;
         textPaint.Color = SKColors.Red;
-        canvas.DrawText("X", x * 20 + 60, y * 20 + 60, SKTextAlign.Center, font, textPaint);
+        canvas.DrawText("X", x * 20 + 60, y * 20 + 65, SKTextAlign.Center, font, textPaint);
         return true;
     }
     public bool Restore(string row, string col)
@@ -263,7 +264,7 @@ internal class Game : IDisposable
         if (map[y][x] != 0 && map[y][x] != 100)
         {
             using var textPaint = new SKPaint();
-            textPaint.IsStroke = true;
+            textPaint.IsStroke = false;
             textPaint.Color = map[y][x] switch
             {
                 1 => SKColors.Blue,
@@ -275,7 +276,7 @@ internal class Game : IDisposable
                 7 => SKColors.Black,
                 8 => SKColors.Gray
             };
-            canvas.DrawText(map[y][x].ToString(), x * 20 + 60, y * 20 + 60, SKTextAlign.Center, font, textPaint);
+            canvas.DrawText(map[y][x].ToString(), x * 20 + 60, y * 20 + 65, SKTextAlign.Center, font, textPaint);
         }
         return;
     }
