@@ -4,7 +4,8 @@ namespace Gdr2333.Plugin.Minesweeper;
 
 internal class Game : IDisposable
 {
-    private static readonly SKFont font = SKFontManager.Default.MatchFamily("Noto Sans").ToFont();
+    private static readonly SKFont font = SKFontManager.Default.CreateTypeface($"{Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)}{Path.DirectorySeparatorChar}IntelOneMono-Regular.otf").ToFont();
+
     private readonly SKBitmap bitmap;
     private readonly SKCanvas canvas;
     public bool IsEnd { get; private set; } = false;
